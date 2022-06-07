@@ -1,0 +1,1 @@
+"""Covers all the required parts for the service."""
