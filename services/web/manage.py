@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 import os
 
 
-from project import create_db_engine, User, app
+from project import create_db_engine, User, Address, app
 from models.user import meta
 
 
