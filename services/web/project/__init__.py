@@ -1,12 +1,12 @@
 """The file including the flask app."""
 from flask import Flask, jsonify
-from db import db
 from models.user import User
-
+from db import create_db_engine
+from sqlalchemy.orm import Session
+from flask import current_app
 
 app = Flask(__name__)
 app.config.from_object("project.config.Config")
-db.init_app(app)
 
 
 @app.route("/")
@@ -16,7 +16,8 @@ def hello_world():
 @app.route('/user/add/<email>')
 def add_user(email):
     """Adds a user to db."""
-    db.session.add(User(email=email))
-    db.session.commit()
+    with Session(create_db_engine(db_url=current_app.config['SQLALCHEMY_DATABASE_URI'])) as session:
+        session.add(User(email=email, active=True))
+        session.commit()
 
     return jsonify({'message': 'User is added.'})

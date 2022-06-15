@@ -1,12 +1,24 @@
 """Includes the user model."""
-from db import db
+from sqlalchemy import Table, Column, Integer, String, ForeignKey, Boolean, MetaData
+from sqlalchemy.orm import registry
+from dataclasses import dataclass
+from dataclasses import field
 
-class User(db.Model):
-    __tablename__ = "users"
+mapper_registry = registry()
+meta = MetaData()
 
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(128), unique=True, nullable=False)
-    active = db.Column(db.Boolean(), default=True, nullable=False)
+user_table = Table(
+    'users',
+    meta,
+    Column('id', Integer, primary_key=True),
+    Column('email', String(50)),
+    Column('active', Boolean)
+)
 
-    def __init__(self, email):
-        self.email = email
+@dataclass
+class User:
+    id: int = field(init=False)
+    email: str
+    active: bool
+
+mapper_registry.map_imperatively(User, user_table)
