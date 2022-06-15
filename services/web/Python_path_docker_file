@@ -1,0 +1,32 @@
+# This Dockerfile is another option using instead of the Dockerfile.
+# Here, we don't set the WORKDIR and instead of it, we set the PYTHONPATH to be able to find the ppython packages.
+# pull official base image
+FROM python:3.9.5-slim-buster
+
+# set work directory.
+# WORKDIR /usr/src/app
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# install system dependencies
+RUN apt-get update && apt-get install -y netcat
+
+# Creating a directory for the app in the filesystem.
+RUN mkdir /usr/src/app
+
+# install dependencies
+RUN pip install --upgrade pip
+COPY ./requirements.txt /usr/src/app/requirements.txt
+
+RUN pip install -r /usr/src/app/requirements.txt
+
+# copy project
+COPY . /usr/src/app/
+
+# Seetting the PYTHONPATH env variable to enable the sys.path to find python files.
+ENV PYTHONPATH "${PYTHONPATH}:/usr/src/app"
+
+# run entrypoint.sh
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
