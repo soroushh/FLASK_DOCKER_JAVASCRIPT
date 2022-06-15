@@ -3,9 +3,6 @@
 # pull official base image
 FROM python:3.9.5-slim-buster
 
-# set work directory.
-# WORKDIR /usr/src/app
-
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -25,7 +22,7 @@ RUN pip install -r /usr/src/app/requirements.txt
 # copy project
 COPY . /usr/src/app/
 
-# Seetting the PYTHONPATH env variable to enable the sys.path to find python files.
+# Setting the PYTHONPATH env variable to enable the sys.path to find python files.
 ENV PYTHONPATH "${PYTHONPATH}:/usr/src/app"
 
 # run entrypoint.sh
