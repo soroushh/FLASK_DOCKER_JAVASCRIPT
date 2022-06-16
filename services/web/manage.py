@@ -1,12 +1,12 @@
 """The file for handling the cli commands."""
-from flask.cli import FlaskGroup
-from sqlalchemy.orm import Session
 import os
 
+from flask.cli import FlaskGroup
+from sqlalchemy.orm import Session
 
-from project import create_db_engine, User, Address, app
-from models.user import meta
-
+from db import meta, create_db_engine
+from models.user import User
+from project import app
 
 cli = FlaskGroup(app)
 
