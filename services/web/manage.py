@@ -13,7 +13,7 @@ cli = FlaskGroup(app)
 @cli.command("create_db")
 def create_db():
     engine = create_db_engine(os.getenv('DATABASE_URL'))
-    meta.drop_all(engine)
+    # meta.drop_all(engine)
     meta.create_all(engine)
 
 
