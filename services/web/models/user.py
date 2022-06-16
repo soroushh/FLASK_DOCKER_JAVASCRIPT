@@ -1,13 +1,12 @@
 """Includes the user model."""
-from sqlalchemy import Table, Column, Integer, String, ForeignKey, Boolean, MetaData
-from sqlalchemy.orm import registry
-from dataclasses import dataclass
-from dataclasses import field
-from sqlalchemy.orm import relationship
 from typing import List
 
+from dataclasses import dataclass, field
+from models import meta
+from sqlalchemy import Table, Column, Integer, String, ForeignKey, Boolean
+from sqlalchemy.orm import registry, relationship
+
 mapper_registry = registry()
-meta = MetaData()
 
 user_table = Table(
     'users',
