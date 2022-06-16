@@ -5,7 +5,7 @@ from flask.cli import FlaskGroup
 from sqlalchemy.orm import Session
 
 from db import meta, create_db_engine
-from models.user import User
+from models import User
 from project import app
 
 cli = FlaskGroup(app)
