@@ -2,7 +2,7 @@
 from typing import List
 
 from dataclasses import dataclass, field
-from models import meta
+from db import meta
 from sqlalchemy import Table, Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy.orm import registry, relationship
 

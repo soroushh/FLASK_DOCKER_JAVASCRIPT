@@ -1,6 +1,7 @@
 """Includes the db definition."""
-from sqlalchemy import create_engine
-from flask import current_app
+from sqlalchemy import create_engine, MetaData
+
+meta = MetaData()
 
 def create_db_engine(db_url):
     """Creates an engine based on a db url."""
