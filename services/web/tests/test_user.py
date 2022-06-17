@@ -1,6 +1,6 @@
 """The tests related to the User model."""
 from db import create_db_engine, meta
-from models import User
+from models import User, Address
 from sqlalchemy.orm import Session
 
 
@@ -14,7 +14,11 @@ def test_object():
             User(
                 email='a@a.com',
                 active=True,
-                addresses=[]
+                addresses=[
+                    Address(
+                        email_address='b@b.com'
+                    )
+                ]
             )
         )
         session.commit()
@@ -24,4 +28,6 @@ def test_object():
     assert user.email == 'a@a.com'
     assert user.id == 1
     assert user.active is True
-    assert user.addresses == []
+    assert len(user.addresses) == 1
+    assert user.addresses[0].user_id == 1
+    assert user.addresses[0].id == 1
