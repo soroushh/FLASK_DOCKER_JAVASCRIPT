@@ -1,6 +1,7 @@
 """The file including the flask app."""
 from flask import Flask, jsonify
-from models.user import User, Address
+from models.user import User
+from models.address import Address
 from db import create_db_engine
 from sqlalchemy.orm import Session
 from flask import current_app
