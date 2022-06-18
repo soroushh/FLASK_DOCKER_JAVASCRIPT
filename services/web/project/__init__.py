@@ -23,7 +23,8 @@ def add_user(email):
                 active=True,
                 addresses=[
                     Address(email_address=email)
-                ]
+                ],
+                job='Student'
             )
         )
         session.commit()

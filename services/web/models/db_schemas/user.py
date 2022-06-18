@@ -7,5 +7,6 @@ user = Table(
     meta,
     Column('id', Integer, primary_key=True),
     Column('email', String(50)),
+    Column('job', String(50)),
     Column('active', Boolean)
 )

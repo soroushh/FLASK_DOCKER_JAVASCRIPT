@@ -14,6 +14,7 @@ def test_object():
             User(
                 email='a@a.com',
                 active=True,
+                job='student',
                 addresses=[
                     Address(
                         email_address='b@b.com'
@@ -28,6 +29,7 @@ def test_object():
     assert user.email == 'a@a.com'
     assert user.id == 1
     assert user.active is True
+    assert user.job == 'student'
     assert len(user.addresses) == 1
     assert user.addresses[0].user_id == 1
     assert user.addresses[0].id == 1
