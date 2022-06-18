@@ -1,6 +1,6 @@
 """The tests related to the User model."""
 from db import create_db_engine, meta
-from models import User, Address
+from mappers import User, Address
 from sqlalchemy.orm import Session
 
 
