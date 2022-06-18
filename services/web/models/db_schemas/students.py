@@ -1,6 +1,5 @@
-from .user import user
 from db import meta
-from sqlalchemy import Table, Column, Integer, String, ForeignKey, Boolean
+from sqlalchemy import Table, Column, Integer, ForeignKey
 
 students = Table(
     'students',
