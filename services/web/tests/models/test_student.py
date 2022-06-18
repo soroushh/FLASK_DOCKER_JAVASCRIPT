@@ -54,15 +54,19 @@ def test_adding_student_adds_user_and_student():
 
     assert len(users) == 1
 
+    assert isinstance(users[0], User)
     assert users[0].id == 1
     assert users[0].email == 'a@a.com'
     assert users[0].job == 'student'
 
+    assert isinstance(students[0], Student)
+    assert isinstance(students[0], User)
     assert len(students) == 1
     assert students[0].id == 1
     assert students[0].number == 10
 
     assert len(addresses) == 1
+    assert isinstance(addresses[0], Address)
     assert addresses[0].id == 1
     assert addresses[0].email_address == 'b@b.com'
     assert addresses[0].user_id == 1
