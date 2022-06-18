@@ -11,5 +11,5 @@ class User:
         self.email = email
         self.active = active
         self.job = job
-        self.addresses = addresses
+        self.addresses = addresses or []
         self.id = id

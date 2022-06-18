@@ -1,6 +1,6 @@
 """The file including the flask app."""
 from flask import Flask, jsonify
-from mappers import User, Address
+from mappers import User, Address, Student
 from db import create_db_engine
 from sqlalchemy.orm import Session
 from flask import current_app
@@ -50,3 +50,18 @@ def find_user(id):
         user = session.query(User).filter(User.id == int(id)).first()
 
     return jsonify({'email': user.email})
+
+@app.route('/student/add')
+def add_student():
+    """Adds a student."""
+    with Session(create_db_engine(db_url=current_app.config['SQLALCHEMY_DATABASE_URI'])) as session:
+        session.add(Student(
+            number=14,
+            email='b@b.com',
+            active=True,
+            job='student',
+            addresses=[Address(email_address='b@b.com')]
+        ))
+        session.commit()
+
+    return jsonify({'message': 'addresses changed.'})
