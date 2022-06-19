@@ -1,6 +1,6 @@
 """The file including the flask app."""
 from flask import Flask, jsonify
-from mappers import User, Address, Student
+from mappers import User, Address, Student, user_schema
 from db import create_db_engine
 from sqlalchemy.orm import Session
 from flask import current_app
@@ -24,7 +24,7 @@ def add_user(email):
                 addresses=[
                     Address(email_address=email)
                 ],
-                job='Student'
+                job='student'
             )
         )
         session.commit()
@@ -35,9 +35,8 @@ def add_user(email):
 def change_addresses(id1, id2):
     """Changes the addresses of the users."""
     with Session(create_db_engine(db_url=current_app.config['SQLALCHEMY_DATABASE_URI'])) as session:
-        user_1 = session.query(User).filter(User.id == int(id1)).first()
-        user_2 = session.query(User).filter(User.id == int(id2)).first()
-
+        user_1 = session.query(User).filter(user_schema.primary_key.columns[0] == int(id1)).first()
+        user_2 = session.query(User).filter(user_schema.primary_key.columns[0] == int(id2)).first()
         user_1.addresses.extend(user_2.addresses)
         session.commit()
 
